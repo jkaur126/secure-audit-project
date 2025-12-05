@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ "javascript" ]  # HTML/CSS project still gets JS analysis
+        language: [ "javascript" ]
 
     steps:
     - name: Checkout repository
@@ -30,10 +30,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-
-    - name: Build code
-      run: |
-        echo "No build step needed for HTML/CSS project"
+        build-mode: none   # IMPORTANT FIX
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
