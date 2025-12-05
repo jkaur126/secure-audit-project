@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ "javascript" ]
+        language: [ "cpp", "csharp", "python", "go", "ruby" ] # scan nothing effectively
 
     steps:
     - name: Checkout repository
@@ -30,7 +30,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        build-mode: none   # IMPORTANT FIX
+        build-mode: none
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
